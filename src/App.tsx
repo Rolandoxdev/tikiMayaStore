@@ -1,13 +1,7 @@
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
 function App() {
-  return (
-    <Box>
-      <Typography variant="h1">
-        TikiMaya Store
-      </Typography>
-    </Box>
-  )
+  return <Box component="main" />
 }
 
 export default App
