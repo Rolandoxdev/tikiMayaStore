@@ -4,6 +4,7 @@ export interface Product {
   name: string
   type: string
   description?: string
+  caracter?: string
   profile?: string
   ingredients?: string[]
   presentation?: string

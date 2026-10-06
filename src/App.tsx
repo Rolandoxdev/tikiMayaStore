@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 import { SiteHeader } from './components/layout/SiteHeader'
 import { HeroSection } from './components/sections/HeroSection'
 import { IntroSection } from './components/sections/IntroSection'
+import { ProductSection } from './components/sections/ProductSection'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <SiteHeader />
       <HeroSection />
       <IntroSection />
+      <ProductSection />
     </Box>
   )
 }
