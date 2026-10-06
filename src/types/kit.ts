@@ -8,6 +8,7 @@ export interface Kit {
   id: string
   slug: string
   name: string
+  type?: string
   description?: string
   productIds?: string[]
   accessories?: KitAccessory[]

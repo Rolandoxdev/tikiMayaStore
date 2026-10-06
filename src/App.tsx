@@ -3,6 +3,7 @@ import { SiteHeader } from './components/layout/SiteHeader'
 import { HeroSection } from './components/sections/HeroSection'
 import { IntroSection } from './components/sections/IntroSection'
 import { ProductSection } from './components/sections/ProductSection'
+import { KitSection } from './components/sections/KitSection'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <HeroSection />
       <IntroSection />
       <ProductSection />
+      <KitSection />
     </Box>
   )
 }
