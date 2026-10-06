@@ -6,6 +6,7 @@ import { ProductSection } from './components/sections/ProductSection'
 import { KitSection } from './components/sections/KitSection'
 import { BrewGuideSection } from './components/sections/BrewGuideSection'
 import { SocialSection } from './components/sections/SocialSection'
+import { HowToBuySection } from './components/sections/HowToBuySection'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <KitSection />
       <BrewGuideSection />
       <SocialSection />
+      <HowToBuySection />
     </Box>
   )
 }
