@@ -7,81 +7,79 @@ export function HeroSection() {
       component="section"
       id="hero"
       sx={{
-        pt: { xs: 6, md: 10 },
-        pb: { xs: 8, md: 12 },
+        pt: { xs: 5, md: 8 },
+        pb: { xs: 9, md: 14 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-            gap: { xs: 4, md: 6 },
+            gridTemplateColumns: { xs: '1fr', md: '0.94fr 1.06fr' },
+            gap: { xs: 5, md: 9 },
             alignItems: 'center',
           }}
         >
-          <Box sx={{ order: { xs: 1, md: 1 } }}>
+          <Box sx={{ order: { xs: 1, md: 1 }, py: { md: 4 } }}>
             <Typography
               component="p"
               sx={{
                 color: 'primary.main',
-                fontSize: '0.75rem',
+                fontSize: '0.68rem',
                 fontWeight: 500,
-                letterSpacing: '0.15em',
+                letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                mb: 2,
+                mb: { xs: 3, md: 4 },
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1.5,
+                '&::before': {
+                  content: '""',
+                  width: 32,
+                  height: 1,
+                  backgroundColor: 'accent.dark',
+                },
               }}
             >
-              TikiMaya Store
+              Tés, infusiones, pequeños rituales
             </Typography>
 
             <Typography
               component="h1"
               sx={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
-                fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
+                fontFamily: (theme) => theme.typography.h1.fontFamily,
+                fontSize: { xs: 'clamp(3.35rem, 15vw, 5rem)', md: 'clamp(5rem, 7vw, 7.8rem)' },
                 fontWeight: 400,
-                lineHeight: 1.15,
+                lineHeight: 0.98,
+                letterSpacing: '-0.065em',
                 color: 'primary.main',
-                mb: 3,
+                mb: { xs: 3, md: 4 },
+                maxWidth: '9ch',
               }}
             >
-              Hay algo por descubrir.
+              Hay algo <Box component="span" sx={{ color: 'primary.light', fontStyle: 'italic' }}>por descubrir.</Box>
             </Typography>
 
             <Typography
               component="p"
               sx={{
-                fontSize: { xs: '1rem', md: '1.125rem' },
-                lineHeight: 1.7,
+                fontSize: { xs: '1rem', md: '1.08rem' },
+                lineHeight: 1.8,
                 color: 'primary.main',
-                opacity: 0.75,
-                mb: 4,
-                maxWidth: '40ch',
+                opacity: 0.82,
+                mb: { xs: 4, md: 5 },
+                maxWidth: '34ch',
               }}
             >
               Tés, infusiones y pequeños rituales para disfrutar y compartir.
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
               <Button
                 component="a"
                 href="#products"
                 variant="contained"
-                sx={{
-                  backgroundColor: 'primary.main',
-                  color: 'secondary.main',
-                  fontWeight: 400,
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: '8px',
-                  textTransform: 'none',
-                  fontSize: '0.9375rem',
-                  letterSpacing: '0.02em',
-                  '&:hover': {
-                    backgroundColor: 'primary.dark',
-                  },
-                }}
+                color="primary"
               >
                 Descubrir productos
               </Button>
@@ -90,29 +88,30 @@ export function HeroSection() {
                 component="a"
                 href="#kits"
                 variant="outlined"
-                sx={{
-                  borderColor: 'primary.main',
-                  color: 'primary.main',
-                  fontWeight: 400,
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: '8px',
-                  textTransform: 'none',
-                  fontSize: '0.9375rem',
-                  letterSpacing: '0.02em',
-                  '&:hover': {
-                    borderColor: 'primary.main',
-                    backgroundColor: 'rgba(35, 75, 77, 0.04)',
-                  },
-                }}
+                color="primary"
               >
                 Ver kits
               </Button>
             </Box>
           </Box>
 
-          <Box sx={{ order: { xs: 2, md: 2 } }}>
-            <EditorialVisual height={{ xs: 300, md: 440 }} />
+          <Box sx={{ order: { xs: 2, md: 2 }, position: 'relative' }}>
+            <EditorialVisual height={{ xs: 320, md: 590 }} variant="hero" />
+            <Typography
+              component="p"
+              sx={{
+                position: 'absolute',
+                right: { xs: 0, md: 12 },
+                bottom: { xs: -28, md: -34 },
+                fontSize: '0.62rem',
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: 'primary.main',
+                opacity: 0.65,
+              }}
+            >
+              Mezclas para cada momento
+            </Typography>
           </Box>
         </Box>
       </Container>

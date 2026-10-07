@@ -1,138 +1,155 @@
 import { Box, Typography } from '@mui/material'
-import { Gift } from 'lucide-react'
+import { alpha } from '@mui/material/styles'
+import { Gift, Sparkles } from 'lucide-react'
 import type { Kit } from '../../types/kit.ts'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
 
 interface KitCardProps {
   kit: Kit
-  whatsappHref?: string | null
+  index: number
+  whatsappHref: string | null
 }
 
-export function KitCard({ kit, whatsappHref }: KitCardProps) {
-  const showWhatsApp = whatsappHref && kit.available !== false
+export function KitCard({ kit, index, whatsappHref }: KitCardProps) {
+  const showWhatsApp = Boolean(whatsappHref) && kit.available !== false
 
   return (
     <Box
+      component="article"
       sx={{
-        backgroundColor: 'secondary.main',
-        borderRadius: '16px',
-        overflow: 'hidden',
+        minHeight: { md: 420 },
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
+        p: { xs: 2.5, md: 3.5 },
+        borderTop: '1px solid',
+        borderColor: 'primary.main',
+        transition: 'background-color 220ms ease, transform 220ms ease',
+        '&:hover': {
+          backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.04),
+          transform: { md: 'translateY(-4px)' },
+        },
       }}
     >
       <Box
         sx={{
-          width: '100%',
-          height: { xs: 200, md: 240 },
-          backgroundColor: 'primary.main',
-          opacity: 0.08,
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
+          minHeight: { xs: 136, md: 164 },
+          mb: { xs: 3, md: 4 },
+          overflow: 'hidden',
+          backgroundColor: index % 2 === 0 ? 'secondary.light' : 'secondary.dark',
+          borderRadius: index === 1 ? '50% 50% 4px 4px' : '4px',
         }}
       >
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '12%',
-            right: '12%',
-            width: '30%',
-            height: '45%',
-            backgroundColor: 'rgba(35, 75, 77, 0.1)',
-            borderRadius: '40% 60% 50% 50%',
-            transform: 'rotate(12deg)',
-          }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '12%',
-            left: '10%',
-            width: '35%',
-            height: '50%',
-            backgroundColor: 'rgba(251, 191, 73, 0.2)',
-            borderRadius: '50% 40% 60% 50%',
-            transform: 'rotate(-15deg)',
-          }}
-        />
-        <Gift
-          size={48}
-          strokeWidth={1}
-          style={{
-            color: 'rgba(35, 75, 77, 0.25)',
-            position: 'relative',
-            zIndex: 1,
-          }}
-        />
-      </Box>
-
-      <Box sx={{ p: { xs: 3, md: 4 }, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-        {kit.type && (
-          <Typography
-            component="p"
-            sx={{
-              color: 'primary.main',
-              fontSize: '0.7rem',
-              fontWeight: 500,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              mb: 1,
-              opacity: 0.7,
-            }}
-          >
-            {kit.type}
-          </Typography>
-        )}
-
-        <Typography
-          component="h3"
-          sx={{
-            fontFamily: 'Georgia, "Times New Roman", serif',
-            fontSize: { xs: '1.375rem', md: '1.5rem' },
-            fontWeight: 400,
-            color: 'primary.main',
-            mb: 1.5,
-            lineHeight: 1.25,
-          }}
-        >
-          {kit.name}
-        </Typography>
-
-        {kit.description && (
-          <Typography
-            component="p"
-            sx={{
-              color: 'primary.main',
-              fontSize: '0.875rem',
-              lineHeight: 1.7,
-              mb: 3,
-              opacity: 0.85,
-            }}
-          >
-            {kit.description}
-          </Typography>
-        )}
-
-        <Box sx={{ mt: 'auto', pt: 2 }}>
-          {showWhatsApp ? (
-            <WhatsAppCta href={whatsappHref!} label="Consultar por WhatsApp" />
-          ) : (
-            <Typography
-              component="p"
+        {kit.image || kit.images?.[0] ? (
+          <Box
+            component="img"
+            src={kit.image ?? kit.images?.[0]}
+            alt={kit.name}
+            sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : (
+          <>
+            <Box
+              aria-hidden
               sx={{
+                position: 'absolute',
+                width: 124,
+                height: 124,
+                right: -22,
+                top: -36,
+                border: '1px solid',
+                borderColor: (theme) => alpha(theme.palette.primary.main, 0.2),
+                borderRadius: '50%',
+              }}
+            />
+            <Box
+              aria-hidden
+              sx={{
+                position: 'absolute',
+                width: 88,
+                height: 88,
+                right: -4,
+                top: -18,
+                border: '1px solid',
+                borderColor: (theme) => alpha(theme.palette.primary.main, 0.2),
+                borderRadius: '50%',
+              }}
+            />
+            <Typography
+              component="span"
+              sx={{
+                position: 'relative',
+                zIndex: 1,
+                pl: { xs: 2.5, md: 3 },
                 color: 'primary.main',
-                fontSize: '0.8125rem',
-                fontStyle: 'italic',
-                opacity: 0.5,
+                fontFamily: (theme) => theme.typography.h2.fontFamily,
+                fontSize: { xs: '4.5rem', md: '5.5rem' },
+                lineHeight: 1,
+                opacity: 0.22,
+                letterSpacing: '-0.07em',
               }}
             >
-              Próximamente disponible
+              0{index + 1}
             </Typography>
-          )}
-        </Box>
+            <Box sx={{ position: 'relative', zIndex: 1, mr: { xs: 3, md: 4 }, color: 'primary.main' }}>
+              {index === 2 ? <Sparkles size={44} strokeWidth={0.8} /> : <Gift size={44} strokeWidth={0.8} />}
+            </Box>
+          </>
+        )}
+      </Box>
+
+      <Typography
+        component="p"
+        sx={{
+          color: 'primary.main',
+          fontSize: '0.62rem',
+          fontWeight: 500,
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          opacity: 0.62,
+          mb: 1.5,
+        }}
+      >
+        {kit.type}
+      </Typography>
+      <Typography
+        component="h3"
+        sx={{
+          fontFamily: (theme) => theme.typography.h3.fontFamily,
+          fontSize: { xs: '2rem', md: '2.4rem' },
+          fontWeight: 400,
+          color: 'primary.main',
+          lineHeight: 1.05,
+          letterSpacing: '-0.045em',
+          mb: 2,
+        }}
+      >
+        {kit.name}
+      </Typography>
+      {kit.description && (
+        <Typography component="p" sx={{ color: 'text.primary', fontSize: '0.86rem', lineHeight: 1.8, opacity: 0.8, mb: 3 }}>
+          {kit.description}
+        </Typography>
+      )}
+
+      {kit.price !== undefined && (
+        <Typography component="p" sx={{ fontSize: '0.95rem', mb: 2 }}>
+          {kit.currency
+            ? new Intl.NumberFormat('es-GT', { style: 'currency', currency: kit.currency }).format(kit.price)
+            : kit.price}
+        </Typography>
+      )}
+      {kit.available !== undefined && (
+        <Typography component="p" sx={{ fontSize: '0.75rem', opacity: 0.7, mb: 2 }}>
+          {kit.available ? 'Disponible' : 'No disponible'}
+        </Typography>
+      )}
+
+      <Box sx={{ mt: 'auto', pt: 2 }}>
+        {showWhatsApp && <WhatsAppCta href={whatsappHref} />}
       </Box>
     </Box>
   )

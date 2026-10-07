@@ -26,6 +26,66 @@
 - Secondary/background color: `#E8E2D2`
 - Accent color: `#FBBF49`
 
+## Visual Direction
+
+TikiMaya Store follows a **botanical editorial** direction: contemporary, warm, natural, sophisticated, and artisanal without being rustic — modern without feeling technological. The visual language draws from nature, tea culture, and the spirit of discovery.
+
+### Character
+
+- Editorial — inspired by printed matter, magazines, and botanical notebooks
+- Botanical — natural forms, organic shapes, and references to the plant world
+- Warm — grounded in the cream and deep green palette, never cold or sterile
+- Sophisticated — restrained, considered, and intentionally composed
+- Artisanal — human, crafted, and authentic
+- Discoverable — inviting exploration rather than efficiency
+
+### Composition
+
+- Avoid repeating the same section pattern across the page
+- Reduce reliance on generic card grids
+- Use different visual rhythms between sections
+- Use asymmetric layouts when they add purpose
+- Use whitespace deliberately to create breath and hierarchy
+- Prioritize editorial hierarchy over typical ecommerce patterns
+
+### Surfaces
+
+- The existing palette remains the foundation: `#234B4D`, `#E8E2D2`, `#FBBF49`
+- Alternation between cream and deep green surfaces may be used to create rhythm
+- Do not turn the page into a sequence of colored blocks without purpose
+
+### Photography
+
+- Product and experience photography should be the protagonist when available
+- Do not download external images automatically
+- Do not invent photographs
+- Components should be prepared to receive real assets
+
+### Abstract Visuals
+
+- Abstract compositions are secondary editorial resources
+- They should not permanently replace photographs when real photography exists
+- They serve as compositional anchors and breathing space in editorial layouts
+
+### Typography
+
+- Maintain a clear editorial hierarchy
+- Use serif or editorial system fonts for headlines and brand elements where appropriate
+- Use readable body text for content
+- Avoid excessive typographic styles
+
+### Products and Kits
+
+- Products and kits do not need to share the same visual pattern
+- Products may be presented as an editorial sequence
+- Kits may receive a more open or experiential treatment
+- Avoid automatically returning to a generic ecommerce grid
+
+### Responsive
+
+- Design is considered as its own experience on mobile and desktop
+- Do not assume mobile is simply a reduced version of desktop
+
 ## Product Scope
 
 - The first version is a storefront/catalogue that uses WhatsApp as the consultation and ordering channel.

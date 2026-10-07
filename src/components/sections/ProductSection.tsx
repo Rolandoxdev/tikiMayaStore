@@ -1,41 +1,66 @@
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { products } from '../../data/products'
 import { ProductCard } from '../products/ProductCard'
+import { createWhatsAppLink } from '../../utils/whatsapp'
+import { whatsappConfig } from '../../features/whatsapp/config'
 
 export function ProductSection() {
+  const whatsappHref = createWhatsAppLink({
+    phoneNumber: whatsappConfig.phoneNumber,
+    message: whatsappConfig.defaultMessage,
+  })
+
   return (
     <Box
       component="section"
       id="products"
       sx={{
-        py: { xs: 8, md: 12 },
-        backgroundColor: 'background.default',
+        py: { xs: 9, md: 16 },
+        backgroundColor: 'background.paper',
       }}
     >
-      <Container maxWidth="lg">
-        <Box sx={{ mb: { xs: 5, md: 7 } }}>
-          <Typography
-            component="h2"
-            sx={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              fontWeight: 400,
-              color: 'primary.main',
-              mb: 2.5,
-              lineHeight: 1.2,
-            }}
-          >
-            Descubre nuestras mezclas
-          </Typography>
+      <Container maxWidth="xl">
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', md: '0.9fr 1.1fr' },
+            alignItems: 'end',
+            gap: { xs: 2, md: 8 },
+            mb: { xs: 3, md: 5 },
+          }}
+        >
+          <Box>
+            <Typography
+              component="p"
+              sx={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.62, mb: 2 }}
+            >
+              La colección · 01—03
+            </Typography>
+            <Typography
+              component="h2"
+              sx={{
+                fontFamily: (theme) => theme.typography.h2.fontFamily,
+                fontSize: { xs: '2.7rem', md: '4rem' },
+                fontWeight: 400,
+                color: 'primary.main',
+                mb: 0,
+                lineHeight: 1.02,
+                letterSpacing: '-0.05em',
+              }}
+            >
+              Descubre nuestras mezclas
+            </Typography>
+          </Box>
 
           <Typography
             component="p"
             sx={{
-              fontSize: { xs: '0.9375rem', md: '1.0625rem' },
-              lineHeight: 1.8,
+              fontSize: { xs: '0.9rem', md: '0.98rem' },
+              lineHeight: 1.85,
               color: 'primary.main',
-              opacity: 0.8,
-              maxWidth: '55ch',
+              opacity: 0.76,
+              maxWidth: '56ch',
+              pb: { md: 0.5 },
             }}
           >
             Tres mezclas, tres formas de descubrir el té. Desde una infusión frutal de
@@ -44,13 +69,11 @@ export function ProductSection() {
           </Typography>
         </Box>
 
-        <Grid container spacing={{ xs: 3, md: 4 }}>
-          {products.map((product) => (
-            <Grid key={product.id} size={{ xs: 12, md: 4 }}>
-              <ProductCard product={product} whatsappHref={null} />
-            </Grid>
+        <Box>
+          {products.map((product, index) => (
+            <ProductCard key={product.id} index={index} product={product} whatsappHref={whatsappHref} />
           ))}
-        </Grid>
+        </Box>
       </Container>
     </Box>
   )

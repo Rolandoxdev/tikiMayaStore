@@ -1,4 +1,20 @@
-import { AppBar, Box, Button, Container, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material'
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
+import { alpha } from '@mui/material/styles'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import logoTikiMayaStore from './../../assets/logoTikiMayaStore.svg'
@@ -7,7 +23,7 @@ const navItems = [
   { label: 'Productos', href: '#products' },
   { label: 'Kits', href: '#kits' },
   { label: 'Cómo comprar', href: '#how-to-buy' },
-  { label: 'Contacto', href: '#contact' },
+  { label: 'Contacto', href: '#social' },
 ]
 
 export function SiteHeader() {
@@ -44,16 +60,17 @@ export function SiteHeader() {
     <AppBar
       component="header"
       position="sticky"
-      sx={{
-        backgroundColor: 'background.default',
+      sx={(theme) => ({
+        backgroundColor: alpha(theme.palette.background.default, 0.94),
         color: 'primary.main',
         boxShadow: 'none',
         borderBottom: '1px solid',
-        borderColor: 'rgba(35, 75, 77, 0.1)',
-      }}
+        borderColor: 'divider',
+        backdropFilter: 'blur(14px)',
+      })}
     >
-      <Container maxWidth="lg">
-        <Toolbar disableGutters>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters sx={{ minHeight: { xs: 68, md: 84 }, gap: 4 }}>
           <Box
             component="a"
             href="#"
@@ -70,7 +87,7 @@ export function SiteHeader() {
               src={logoTikiMayaStore}
               alt="TikiMaya Store logo"
               sx={{
-                height: 42,
+                height: { xs: 36, md: 42 },
                 width: 'auto',
                 display: 'block',
               }}
@@ -86,7 +103,7 @@ export function SiteHeader() {
               <Menu size={24} />
             </IconButton>
           ) : (
-            <Box sx={{ display: 'flex', gap: 3 }}>
+            <Box component="nav" aria-label="Navegación principal" sx={{ display: 'flex', gap: { md: 1, lg: 2 } }}>
               {navItems.map((item) => (
                 <Button
                   component="a"
@@ -94,13 +111,25 @@ export function SiteHeader() {
                   key={item.label}
                   sx={{
                     color: 'primary.main',
-                    fontSize: '0.875rem',
+                    fontSize: '0.78rem',
                     fontWeight: 400,
-                    letterSpacing: '0.03em',
+                    letterSpacing: '0.08em',
                     textTransform: 'none',
                     '&:hover': {
                       backgroundColor: 'transparent',
-                      textDecoration: 'underline',
+                      '&::after': { transform: 'scaleX(1)' },
+                    },
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: 8,
+                      left: 16,
+                      right: 16,
+                      height: 1,
+                      backgroundColor: 'currentColor',
+                      transform: 'scaleX(0)',
+                      transformOrigin: 'left',
+                      transition: 'transform 180ms ease',
                     },
                   }}
                 >
@@ -121,7 +150,9 @@ export function SiteHeader() {
           display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': {
             backgroundColor: 'background.default',
-            width: 240,
+            width: { xs: 'min(86vw, 360px)', sm: 360 },
+            borderLeft: '1px solid',
+            borderColor: 'divider',
           },
         }}
       >

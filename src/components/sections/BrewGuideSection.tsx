@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 import { Flame, Ruler, Sparkles, Timer } from 'lucide-react'
 
 const brewSteps = [
@@ -30,158 +31,81 @@ const brewSteps = [
 
 export function BrewGuideSection() {
   return (
-    <Box
-      component="section"
-      id="brew-guide"
-      sx={{
-        py: { xs: 8, md: 12 },
-        backgroundColor: 'background.default',
-      }}
-    >
-      <Container maxWidth="lg">
-        <Box sx={{ mb: { xs: 6, md: 8 }, maxWidth: '55ch' }}>
-          <Typography
-            component="h2"
-            sx={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              fontWeight: 400,
-              color: 'primary.main',
-              mb: 2,
-            }}
-          >
-            Conoce, prepara, disfruta.
-          </Typography>
-
-          <Typography
-            component="p"
-            sx={{
-              fontSize: { xs: '0.9375rem', md: '1.0625rem' },
-              lineHeight: 1.8,
-              color: 'primary.main',
-              opacity: 0.8,
-            }}
-          >
-            Una pequeña guía para que disfrutes tu té.
-          </Typography>
-        </Box>
-
+    <Box component="section" id="brew-guide" sx={{ py: { xs: 8, md: 13 } }}>
+      <Container maxWidth="xl">
         <Box
           sx={{
-            position: 'relative',
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: 'repeat(4, 1fr)' },
-            gap: { xs: 5, md: 3 },
+            backgroundColor: 'primary.main',
+            color: 'secondary.main',
+            px: { xs: 3, sm: 5, md: 8 },
+            py: { xs: 5, md: 8 },
+            borderRadius: { xs: 2, md: 3 },
+            overflow: 'hidden',
           }}
         >
           <Box
-            aria-hidden
             sx={{
-              display: { xs: 'none', md: 'block' },
-              position: 'absolute',
-              top: '32px',
-              left: '12.5%',
-              right: '12.5%',
-              height: '1px',
-              backgroundColor: 'primary.main',
-              opacity: 0.2,
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '1fr 0.7fr' },
+              alignItems: 'end',
+              gap: { xs: 2, md: 8 },
+              mb: { xs: 5, md: 8 },
             }}
-          />
-
-          {brewSteps.map(({ number, title, description, Icon }) => (
-            <Box
-              key={number}
-              sx={{
-                position: 'relative',
-                display: 'flex',
-                flexDirection: { xs: 'row', md: 'column' },
-                alignItems: { xs: 'flex-start', md: 'flex-start' },
-                gap: { xs: 3, md: 2 },
-              }}
-            >
-              <Box
+          >
+            <Box>
+              <Typography component="p" sx={{ color: 'accent.main', fontSize: '0.64rem', letterSpacing: '0.19em', textTransform: 'uppercase', mb: 2 }}>
+                El ritual del té
+              </Typography>
+              <Typography
+                component="h2"
                 sx={{
-                  position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: { xs: 48, md: 'auto' },
-                  height: { xs: 48, md: 64 },
-                  backgroundColor: { xs: 'transparent', md: 'background.default' },
-                  flexShrink: 0,
+                  fontFamily: (theme) => theme.typography.h2.fontFamily,
+                  fontSize: { xs: '2.65rem', md: '4.15rem' },
+                  letterSpacing: '-0.055em',
+                  lineHeight: 0.98,
+                  fontWeight: 400,
+                  maxWidth: '11ch',
                 }}
               >
-                <Typography
-                  component="span"
-                  sx={{
-                    fontFamily: 'Georgia, "Times New Roman", serif',
-                    fontSize: { xs: '2.5rem', md: '3.5rem' },
-                    fontWeight: 400,
-                    color: 'primary.main',
-                    lineHeight: 1,
-                    opacity: 0.35,
-                  }}
-                >
-                  {number}
-                </Typography>
-                <Box
-                  sx={{
-                    display: { xs: 'none', md: 'flex' },
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 32,
-                    height: 32,
-                    backgroundColor: 'background.default',
-                  }}
-                >
-                  <Icon size={20} strokeWidth={1.25} style={{ color: 'currentColor' }} />
+                Conoce, prepara, disfruta.
+              </Typography>
+            </Box>
+            <Typography component="p" sx={{ fontSize: { xs: '0.9rem', md: '0.98rem' }, lineHeight: 1.85, opacity: 0.78, maxWidth: '38ch', pb: 0.5 }}>
+              Una pequeña guía para que disfrutes tu té.
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(4, minmax(0, 1fr))' }, columnGap: { sm: 4, lg: 5 }, rowGap: { xs: 0, sm: 4 } }}>
+            {brewSteps.map(({ number, title, description, Icon }) => (
+              <Box
+                component="article"
+                key={number}
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '44px 1fr', sm: '1fr' },
+                  columnGap: 2,
+                  py: { xs: 2.5, sm: 0 },
+                  borderTop: { xs: '1px solid', sm: 0 },
+                  borderColor: (theme) => alpha(theme.palette.secondary.main, 0.2),
+                }}
+              >
+                <Box sx={{ gridRow: { xs: 'span 2', sm: 'auto' }, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', mb: { sm: 3 }, color: 'accent.main' }}>
+                  <Typography component="span" sx={{ fontFamily: (theme) => theme.typography.h3.fontFamily, color: 'secondary.main', opacity: 0.55, fontSize: { xs: '1.8rem', sm: '2.7rem' }, lineHeight: 1 }}>
+                    {number}
+                  </Typography>
+                  <Icon size={22} strokeWidth={1.15} />
+                </Box>
+                <Box>
+                  <Typography component="h3" sx={{ fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.15em', mb: 1.2 }}>
+                    {title}
+                  </Typography>
+                  <Typography component="p" sx={{ fontSize: '0.83rem', lineHeight: 1.75, opacity: 0.78 }}>
+                    {description}
+                  </Typography>
                 </Box>
               </Box>
-
-              <Box>
-                <Typography
-                  component="h3"
-                  sx={{
-                    fontFamily: 'Georgia, "Times New Roman", serif',
-                    fontSize: { xs: '1.25rem', md: '1.375rem' },
-                    fontWeight: 400,
-                    color: 'primary.main',
-                    letterSpacing: '0.05em',
-                    mb: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1.5,
-                  }}
-                >
-                  <Box sx={{ display: { xs: 'inline-flex', md: 'none' } }}>
-                    <Icon
-                      size={18}
-                      strokeWidth={1.25}
-                      style={{ color: 'currentColor' }}
-                    />
-                  </Box>
-                  {title}
-                </Typography>
-
-                <Typography
-                  component="p"
-                  sx={{
-                    fontSize: '0.875rem',
-                    lineHeight: 1.7,
-                    color: 'primary.main',
-                    opacity: 0.8,
-                    maxWidth: { xs: 'none', md: '28ch' },
-                  }}
-                >
-                  {description}
-                </Typography>
-              </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </Box>
       </Container>
     </Box>

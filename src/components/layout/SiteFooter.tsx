@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 
 const INSTAGRAM_URL = 'https://instagram.com/tikimayastore'
 const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61594489862752'
@@ -50,29 +51,29 @@ export function SiteFooter() {
       sx={{
         backgroundColor: 'primary.main',
         color: 'secondary.main',
-        py: { xs: 6, md: 8 },
+        py: { xs: 5, md: 6 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
             justifyContent: 'space-between',
             alignItems: { xs: 'flex-start', md: 'center' },
-            gap: { xs: 4, md: 4 },
-            mb: { xs: 4, md: 5 },
+            gap: { xs: 3, md: 4 },
+            mb: { xs: 3, md: 4 },
           }}
         >
           <Box>
             <Typography
               component="p"
               sx={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
-                fontSize: { xs: '1.375rem', md: '1.5rem' },
+                fontFamily: (theme) => theme.typography.h4.fontFamily,
+                fontSize: { xs: '1.55rem', md: '1.8rem' },
                 fontWeight: 400,
                 color: 'secondary.main',
-                mb: 1,
+                mb: 0.75,
                 letterSpacing: '0.02em',
               }}
             >
@@ -103,9 +104,15 @@ export function SiteFooter() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                minWidth: 44,
+                minHeight: 44,
                 transition: 'opacity 0.2s ease',
                 '&:hover': {
                   opacity: 1,
+                },
+                '&:focus-visible': {
+                  outline: '1px solid',
+                  outlineOffset: 3,
                 },
               },
             }}
@@ -132,14 +139,14 @@ export function SiteFooter() {
         <Box
           sx={{
             borderTop: '1px solid',
-            borderColor: 'rgba(232, 226, 210, 0.2)',
-            pt: 3,
+              borderColor: (theme) => alpha(theme.palette.secondary.main, 0.18),
+            pt: 2.5,
           }}
         >
           <Typography
             component="p"
             sx={{
-              fontSize: '0.75rem',
+              fontSize: '0.68rem',
               letterSpacing: '0.04em',
               color: 'secondary.main',
               opacity: 0.55,
