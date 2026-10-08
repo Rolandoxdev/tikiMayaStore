@@ -61,12 +61,13 @@ export function SiteHeader() {
       component="header"
       position="sticky"
       sx={(theme) => ({
-        backgroundColor: alpha(theme.palette.background.default, 0.94),
+        backgroundColor: alpha(theme.palette.background.default, 0.86),
         color: 'primary.main',
         boxShadow: 'none',
         borderBottom: '1px solid',
         borderColor: 'divider',
         backdropFilter: 'blur(14px)',
+        marginBottom: { xs: '-68px', md: '-84px' },
       })}
     >
       <Container maxWidth="xl">
