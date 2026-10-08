@@ -8,32 +8,50 @@ interface ProductCardProps {
   product: Product
   index: number
   whatsappHref: string | null
+  variant?: 'editorial' | 'grid'
 }
 
-export function ProductCard({ product, index, whatsappHref }: ProductCardProps) {
+export function ProductCard({ product, index, whatsappHref, variant = 'editorial' }: ProductCardProps) {
   const reverse = index % 2 === 1
+  const isGrid = variant === 'grid'
   const showWhatsApp = Boolean(whatsappHref) && product.available !== false
 
   return (
     <Box
       component="article"
       sx={{
-        display: 'grid',
-        gridTemplateColumns: { xs: '1fr', md: '0.9fr 1.1fr' },
-        direction: { md: reverse ? 'rtl' : 'ltr' },
-        alignItems: 'center',
-        gap: { xs: 3, md: 9 },
-        py: { xs: 4, md: 7 },
-        borderBottom: '1px solid',
-        borderColor: 'divider',
-        '&:last-of-type': { borderBottom: 0 },
-        '& > *': { direction: 'ltr' },
+        ...(isGrid
+          ? {
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              p: { xs: 2.5, md: 3.5 },
+              borderTop: '1px solid',
+              borderColor: 'primary.main',
+              transition: 'background-color 220ms ease, transform 220ms ease',
+              '&:hover': {
+                backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.04),
+                transform: { md: 'translateY(-4px)' },
+              },
+            }
+          : {
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '0.9fr 1.1fr' },
+              direction: { md: reverse ? 'rtl' : 'ltr' },
+              alignItems: 'center',
+              gap: { xs: 3, md: 9 },
+              py: { xs: 4, md: 7 },
+              borderBottom: '1px solid',
+              '&:last-of-type': { borderBottom: 0 },
+              '& > *': { direction: 'ltr' },
+            }),
+        borderColor: isGrid ? 'primary.main' : 'divider',
       }}
     >
       <Box
         sx={{
           position: 'relative',
-          aspectRatio: { xs: '1.25 / 1', md: '1.12 / 1' },
+          aspectRatio: isGrid ? '2.2 / 1' : { xs: '1.25 / 1', md: '1.12 / 1' },
           overflow: 'hidden',
           backgroundColor: (theme) =>
             [
@@ -41,7 +59,9 @@ export function ProductCard({ product, index, whatsappHref }: ProductCardProps) 
               alpha(theme.palette.primary.main, 0.09),
               alpha(theme.palette.accent.main, 0.22),
             ][index % 3],
-          borderRadius: index % 2 === 0 ? '48% 48% 4px 4px' : '4px 48% 4px 48%',
+          borderRadius: isGrid
+            ? index === 1 ? '50% 50% 4px 4px' : '4px'
+            : index % 2 === 0 ? '48% 48% 4px 4px' : '4px 48% 4px 48%',
         }}
       >
         {product.image || product.images?.[0] ? (
@@ -115,7 +135,13 @@ export function ProductCard({ product, index, whatsappHref }: ProductCardProps) 
         )}
       </Box>
 
-      <Box sx={{ py: { md: 2 }, direction: 'ltr' }}>
+      <Box
+        sx={
+          isGrid
+            ? { display: 'flex', flexDirection: 'column', flexGrow: 1, minWidth: 0, pt: 3 }
+            : { py: { md: 2 }, direction: 'ltr' }
+        }
+      >
         <Box
           sx={{
             display: 'flex',
@@ -141,7 +167,7 @@ export function ProductCard({ product, index, whatsappHref }: ProductCardProps) 
           component="h3"
           sx={{
             fontFamily: (theme) => theme.typography.h2.fontFamily,
-            fontSize: { xs: '2.35rem', md: '3.4rem' },
+            fontSize: isGrid ? { xs: '2rem', md: '2.25rem' } : { xs: '2.35rem', md: '3.4rem' },
             letterSpacing: '-0.05em',
             lineHeight: 1.04,
             color: 'primary.main',
@@ -216,7 +242,7 @@ export function ProductCard({ product, index, whatsappHref }: ProductCardProps) 
           </Typography>
         )}
 
-        {showWhatsApp && <Box sx={{ mt: 3 }}><WhatsAppCta href={whatsappHref} /></Box>}
+        {showWhatsApp && <Box sx={{ mt: isGrid ? 'auto' : 3, pt: isGrid ? 3 : 0 }}><WhatsAppCta href={whatsappHref} /></Box>}
       </Box>
     </Box>
   )

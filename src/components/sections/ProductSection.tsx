@@ -15,18 +15,18 @@ export function ProductSection() {
       component="section"
       id="products"
       sx={{
-        py: { xs: 9, md: 16 },
-        backgroundColor: 'background.paper',
+        py: { xs: 9, md: 15 },
+        backgroundColor: 'secondary.light',
       }}
     >
       <Container maxWidth="xl">
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '0.9fr 1.1fr' },
+            gridTemplateColumns: { xs: '1fr', md: '1fr 0.8fr' },
             alignItems: 'end',
             gap: { xs: 2, md: 8 },
-            mb: { xs: 3, md: 5 },
+            mb: { xs: 5, md: 8 },
           }}
         >
           <Box>
@@ -48,7 +48,7 @@ export function ProductSection() {
                 letterSpacing: '-0.05em',
               }}
             >
-              Descubre nuestras mezclas
+              Descubre nuestros kits
             </Typography>
           </Box>
 
@@ -63,15 +63,14 @@ export function ProductSection() {
               pb: { md: 0.5 },
             }}
           >
-            Tres mezclas, tres formas de descubrir el té. Desde una infusión frutal de
-            intenso color rubí hasta una mezcla herbal fresca y un té negro donde el
-            cacao toma el protagonismo.
+            Una selección pensada para regalar, compartir o convertir la preparación del
+            té en un pequeño ritual.
           </Typography>
         </Box>
 
-        <Box>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(3, minmax(0, 1fr))' }, columnGap: { md: 2 }, rowGap: 3 }}>
           {products.map((product, index) => (
-            <ProductCard key={product.id} index={index} product={product} whatsappHref={whatsappHref} />
+            <ProductCard key={product.id} index={index} product={product} whatsappHref={whatsappHref} variant="grid" />
           ))}
         </Box>
       </Container>

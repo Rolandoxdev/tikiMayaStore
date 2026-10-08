@@ -17,11 +17,11 @@ import {
 import { alpha } from '@mui/material/styles'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import logoTikiMayaStore from './../../assets/logoTikiMayaStore.svg'
+import logoTikiMayaStore from './../../assets/images/logoTikiMayaStore.svg'
 
 const navItems = [
-  { label: 'Productos', href: '#products' },
   { label: 'Kits', href: '#kits' },
+  { label: 'Productos', href: '#products' },
   { label: 'Cómo comprar', href: '#how-to-buy' },
   { label: 'Contacto', href: '#social' },
 ]

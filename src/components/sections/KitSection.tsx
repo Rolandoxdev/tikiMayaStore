@@ -15,18 +15,18 @@ export function KitSection() {
       component="section"
       id="kits"
       sx={{
-        py: { xs: 9, md: 15 },
-        backgroundColor: 'secondary.light',
+        py: { xs: 9, md: 16 },
+        backgroundColor: 'background.paper',
       }}
     >
       <Container maxWidth="xl">
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '1fr 0.8fr' },
+            gridTemplateColumns: { xs: '1fr', md: '0.9fr 1.1fr' },
             alignItems: 'end',
             gap: { xs: 2, md: 8 },
-            mb: { xs: 5, md: 8 },
+            mb: { xs: 3, md: 5 },
           }}
         >
           <Box>
@@ -52,9 +52,9 @@ export function KitSection() {
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, minmax(0, 1fr))' }, columnGap: { md: 2 }, rowGap: 3 }}>
+        <Box>
           {kits.map((kit, index) => (
-            <KitCard key={kit.id} index={index} kit={kit} whatsappHref={whatsappHref} />
+            <KitCard key={kit.id} index={index} kit={kit} whatsappHref={whatsappHref} variant="editorial" />
           ))}
         </Box>
       </Container>

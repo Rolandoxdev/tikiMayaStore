@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material'
-import { EditorialVisual } from '../visuals/EditorialVisual'
 import { ArrowDownRight } from 'lucide-react'
+import introImage from '../../assets/images/introSection_TikiMayaStore.jpg'
 
 export function IntroSection() {
   return (
@@ -22,7 +22,19 @@ export function IntroSection() {
           }}
         >
           <Box sx={{ order: { xs: 2, md: 1 }, maxWidth: 620 }}>
-            <EditorialVisual height={{ xs: 300, md: 460 }} variant="intro" />
+            <Box
+              component="img"
+              src={introImage}
+              alt="Dos personas comparten tazas de té en una mesa"
+              sx={{
+                display: 'block',
+                width: '100%',
+                height: { xs: 300, md: 460 },
+                objectFit: 'cover',
+                objectPosition: 'center center',
+                borderRadius: { xs: 40, md: 60 },
+              }}
+            />
           </Box>
 
           <Box sx={{ order: { xs: 1, md: 2 }, py: { md: 5 } }}>
