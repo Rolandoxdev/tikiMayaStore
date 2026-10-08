@@ -1,19 +1,19 @@
 import { Box, Container, Typography } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { Flame, Ruler, Sparkles, Timer } from 'lucide-react'
+import { Coffee, Leaf, Thermometer, Timer } from 'lucide-react'
 
 const brewSteps = [
   {
     number: '01',
     title: 'MIDE',
     description: 'Usa la cantidad recomendada para tu mezcla.',
-    Icon: Ruler,
+    Icon: Leaf,
   },
   {
     number: '02',
     title: 'PREPARA',
     description: 'Agrega agua caliente a la temperatura indicada.',
-    Icon: Flame,
+    Icon: Thermometer,
   },
   {
     number: '03',
@@ -25,7 +25,7 @@ const brewSteps = [
     number: '04',
     title: 'DESCUBRE',
     description: 'Pruébalo primero solo. Después experimenta con miel, hielo o nuevas formas de disfrutarlo.',
-    Icon: Sparkles,
+    Icon: Coffee,
   },
 ]
 
@@ -45,10 +45,6 @@ export function BrewGuideSection() {
         >
           <Box
             sx={{
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', md: '1fr 0.7fr' },
-              alignItems: 'end',
-              gap: { xs: 2, md: 8 },
               mb: { xs: 5, md: 8 },
             }}
           >
@@ -64,15 +60,17 @@ export function BrewGuideSection() {
                   letterSpacing: '-0.055em',
                   lineHeight: 0.98,
                   fontWeight: 400,
-                  maxWidth: '11ch',
                 }}
               >
                 Conoce, prepara, disfruta.
               </Typography>
+              <Typography
+                component="p"
+                sx={{ fontSize: { xs: '0.9rem', md: '0.98rem' }, lineHeight: 1.85, opacity: 0.78, maxWidth: '38ch', mt: { xs: 2, md: 2.5 }, pb: 0.5 }}
+              >
+                Una pequeña guía para que disfrutes tu té.
+              </Typography>
             </Box>
-            <Typography component="p" sx={{ fontSize: { xs: '0.9rem', md: '0.98rem' }, lineHeight: 1.85, opacity: 0.78, maxWidth: '38ch', pb: 0.5 }}>
-              Una pequeña guía para que disfrutes tu té.
-            </Typography>
           </Box>
 
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(4, minmax(0, 1fr))' }, columnGap: { sm: 4, lg: 5 }, rowGap: { xs: 0, sm: 4 } }}>
@@ -93,7 +91,7 @@ export function BrewGuideSection() {
                   <Typography component="span" sx={{ fontFamily: (theme) => theme.typography.h3.fontFamily, color: 'secondary.main', opacity: 0.55, fontSize: { xs: '1.8rem', sm: '2.7rem' }, lineHeight: 1 }}>
                     {number}
                   </Typography>
-                  <Icon size={22} strokeWidth={1.15} />
+                  <Icon size={26} strokeWidth={1.25} />
                 </Box>
                 <Box>
                   <Typography component="h3" sx={{ fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.15em', mb: 1.2 }}>

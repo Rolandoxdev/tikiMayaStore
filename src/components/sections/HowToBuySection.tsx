@@ -54,6 +54,7 @@ export function HowToBuySection() {
               }}
             >
               Así de sencillo
+              <Box component="span" sx={{ color: 'accent.dark' }}>.</Box>
             </Typography>
             <WhatsAppCta
               href={whatsappHref}
