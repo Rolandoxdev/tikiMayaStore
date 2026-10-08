@@ -48,7 +48,7 @@ export function ProductSection() {
                 letterSpacing: '-0.05em',
               }}
             >
-              Descubre nuestros kits
+              Nuestras infusiones
             </Typography>
           </Box>
 
@@ -63,8 +63,9 @@ export function ProductSection() {
               pb: { md: 0.5 },
             }}
           >
-            Una selección pensada para regalar, compartir o convertir la preparación del
-            té en un pequeño ritual.
+            Tres mezclas, tres formas de descubrir el té. Desde una infusión frutal de
+            intenso color rubí hasta una mezcla herbal fresca y un té negro donde el
+            cacao toma el protagonismo.
           </Typography>
         </Box>
 

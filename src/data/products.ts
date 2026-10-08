@@ -25,10 +25,10 @@ export const products: Product[] = [
     id: '3',
     slug: 'cacao-especiado',
     name: 'Cacao Especiado',
-    type: 'Té negro con cacao y especias',
+    type: 'Té negro con cafeína',
     description: 'Una mezcla de té negro, nibs de cacao, cardamomo de Cobán, canela y pimienta gorda.',
     caracter: 'El cacao lleva la mezcla al frente, acompañado por notas cálidas de canela y pimienta gorda, con una presencia suave de cardamomo.',
-    profile: 'Cacao predominante · cálido · especiado · notas suaves de cardamomo',
-    ingredients: ['Té negro', 'nibs de cacao', 'cardamomo de Cobán', 'canela', 'pimienta gorda'],
+    profile: 'Cacao predominante · notas suaves de cardamomo',
+    ingredients: ['Té negro', 'nibs de cacao', 'cardamomo', 'canela', 'pimienta gorda'],
   },
 ]

@@ -1,8 +1,16 @@
 import { Box, Typography } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { Coffee, Leaf } from 'lucide-react'
 import type { Product } from '../../types/product.ts'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
+import atardecerImage from '../../assets/images/infusionAtardecerCarmesi.png'
+import brumaImage from '../../assets/images/infusionBrumaDelAltiplano.png'
+import cacaoImage from '../../assets/images/infusionCacaoEspeciado.png'
+
+const productPhotos: Record<string, { src: string; objectPosition: string }> = {
+  'atardecer-carmesi': { src: atardecerImage, objectPosition: 'center 20%' },
+  'bruma-del-altiplano': { src: brumaImage, objectPosition: 'center 40%' },
+  'cacao-especiado': { src: cacaoImage, objectPosition: 'center 20%' },
+}
 
 interface ProductCardProps {
   product: Product
@@ -15,6 +23,8 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
   const reverse = index % 2 === 1
   const isGrid = variant === 'grid'
   const showWhatsApp = Boolean(whatsappHref) && product.available !== false
+  const photo = productPhotos[product.slug]
+  const imageSrc = product.image || product.images?.[0] || photo?.src
 
   return (
     <Box
@@ -26,7 +36,6 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
               display: 'flex',
               flexDirection: 'column',
               p: { xs: 2.5, md: 3.5 },
-              borderTop: '1px solid',
               borderColor: 'primary.main',
               transition: 'background-color 220ms ease, transform 220ms ease',
               '&:hover': {
@@ -41,7 +50,6 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
               alignItems: 'center',
               gap: { xs: 3, md: 9 },
               py: { xs: 4, md: 7 },
-              borderBottom: '1px solid',
               '&:last-of-type': { borderBottom: 0 },
               '& > *': { direction: 'ltr' },
             }),
@@ -51,7 +59,7 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
       <Box
         sx={{
           position: 'relative',
-          aspectRatio: isGrid ? '2.2 / 1' : { xs: '1.25 / 1', md: '1.12 / 1' },
+          aspectRatio: isGrid ? '5 / 4' : { xs: '1.25 / 1', md: '1.12 / 1' },
           overflow: 'hidden',
           backgroundColor: (theme) =>
             [
@@ -59,79 +67,21 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
               alpha(theme.palette.primary.main, 0.09),
               alpha(theme.palette.accent.main, 0.22),
             ][index % 3],
-          borderRadius: isGrid
-            ? index === 1 ? '50% 50% 4px 4px' : '4px'
-            : index % 2 === 0 ? '48% 48% 4px 4px' : '4px 48% 4px 48%',
+          borderRadius: isGrid ? 3 : index % 2 === 0 ? '48% 48% 4px 4px' : '4px 48% 4px 48%',
         }}
       >
-        {product.image || product.images?.[0] ? (
+        {imageSrc && (
           <Box
             component="img"
-            src={product.image ?? product.images?.[0]}
+            src={imageSrc}
             alt={product.name}
-            sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: photo?.objectPosition ?? 'center center',
+            }}
           />
-        ) : (
-          <>
-            <Box
-              aria-hidden
-              sx={{
-                position: 'absolute',
-                width: '68%',
-                aspectRatio: '1',
-                top: '10%',
-                left: '16%',
-                border: '1px solid',
-                borderColor: (theme) => alpha(theme.palette.primary.main, 0.32),
-                borderRadius: '50%',
-              }}
-            />
-            <Box
-              aria-hidden
-              sx={{
-                position: 'absolute',
-                width: '51%',
-                aspectRatio: '1',
-                top: '19%',
-                left: '24%',
-                border: '1px solid',
-                borderColor: (theme) => alpha(theme.palette.primary.main, 0.22),
-                borderRadius: '50%',
-                transform: `rotate(${index * 18}deg) scaleX(${index % 2 ? 0.7 : 1})`,
-              }}
-            />
-            <Box
-              sx={{
-                position: 'absolute',
-                inset: 0,
-                display: 'grid',
-                placeItems: 'center',
-                color: 'primary.main',
-              }}
-            >
-              <Coffee size={70} strokeWidth={0.8} />
-              <Leaf
-                size={34}
-                strokeWidth={1}
-                style={{ position: 'absolute', transform: 'translate(38px, -42px) rotate(24deg)' }}
-              />
-            </Box>
-            <Typography
-              component="span"
-              sx={{
-                position: 'absolute',
-                right: 18,
-                bottom: 16,
-                color: 'primary.main',
-                fontSize: '0.62rem',
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                opacity: 0.7,
-              }}
-            >
-              Mezcla {String(index + 1).padStart(2, '0')}
-            </Typography>
-          </>
         )}
       </Box>
 
@@ -191,12 +141,6 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
             }}
           >
             {product.profile}
-          </Typography>
-        )}
-
-        {product.description && (
-          <Typography component="p" sx={{ fontSize: '0.94rem', lineHeight: 1.85, color: 'text.primary', maxWidth: '50ch' }}>
-            {product.description}
           </Typography>
         )}
 

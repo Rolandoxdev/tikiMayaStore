@@ -61,7 +61,7 @@ export function SiteHeader() {
       component="header"
       position="sticky"
       sx={(theme) => ({
-        backgroundColor: alpha(theme.palette.background.default, 0.86),
+        backgroundColor: alpha(theme.palette.background.default, 0.75),
         color: 'primary.main',
         boxShadow: 'none',
         borderBottom: '1px solid',
