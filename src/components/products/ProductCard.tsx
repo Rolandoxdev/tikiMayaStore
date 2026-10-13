@@ -1,99 +1,127 @@
 import { Box, Typography } from '@mui/material'
-import { Coffee } from 'lucide-react'
+import { alpha } from '@mui/material/styles'
 import type { Product } from '../../types/product.ts'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
+import atardecerImage from '../../assets/images/infusionAtardecerCarmesi.png'
+import brumaImage from '../../assets/images/infusionBrumaDelAltiplano.png'
+import cacaoImage from '../../assets/images/infusionCacaoEspeciado.png'
+
+const productPhotos: Record<string, { src: string; objectPosition: string }> = {
+  'atardecer-carmesi': { src: atardecerImage, objectPosition: 'center 20%' },
+  'bruma-del-altiplano': { src: brumaImage, objectPosition: 'center 40%' },
+  'cacao-especiado': { src: cacaoImage, objectPosition: 'center 20%' },
+}
 
 interface ProductCardProps {
   product: Product
-  whatsappHref?: string | null
+  index: number
+  whatsappHref: string | null
+  variant?: 'editorial' | 'grid'
 }
 
-export function ProductCard({ product, whatsappHref }: ProductCardProps) {
-  const showWhatsApp = whatsappHref && product.available !== false
+export function ProductCard({ product, index, whatsappHref, variant = 'editorial' }: ProductCardProps) {
+  const reverse = index % 2 === 1
+  const isGrid = variant === 'grid'
+  const showWhatsApp = Boolean(whatsappHref) && product.available !== false
+  const photo = productPhotos[product.slug]
+  const imageSrc = product.image || product.images?.[0] || photo?.src
 
   return (
     <Box
+      component="article"
       sx={{
-        backgroundColor: 'secondary.main',
-        borderRadius: '16px',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        ...(isGrid
+          ? {
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              p: { xs: 2.5, md: 3.5 },
+              borderColor: 'primary.main',
+              transition: 'background-color 220ms ease, transform 220ms ease',
+              '&:hover': {
+                backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.04),
+                transform: { md: 'translateY(-4px)' },
+              },
+            }
+          : {
+              display: 'grid',
+              gridTemplateColumns: { xs: '1fr', md: '0.9fr 1.1fr' },
+              direction: { md: reverse ? 'rtl' : 'ltr' },
+              alignItems: 'center',
+              gap: { xs: 3, md: 9 },
+              py: { xs: 4, md: 7 },
+              '&:last-of-type': { borderBottom: 0 },
+              '& > *': { direction: 'ltr' },
+            }),
+        borderColor: isGrid ? 'primary.main' : 'divider',
       }}
     >
       <Box
         sx={{
-          width: '100%',
-          height: { xs: 200, md: 240 },
-          backgroundColor: 'primary.main',
-          opacity: 0.08,
           position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          aspectRatio: isGrid ? '5 / 4' : { xs: '1.25 / 1', md: '1.12 / 1' },
+          overflow: 'hidden',
+          backgroundColor: (theme) =>
+            [
+              theme.palette.secondary.light,
+              alpha(theme.palette.primary.main, 0.09),
+              alpha(theme.palette.accent.main, 0.22),
+            ][index % 3],
+          borderRadius: isGrid ? 3 : index % 2 === 0 ? '48% 48% 4px 4px' : '4px 48% 4px 48%',
         }}
+      >
+        {imageSrc && (
+          <Box
+            component="img"
+            src={imageSrc}
+            alt={product.name}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: photo?.objectPosition ?? 'center center',
+            }}
+          />
+        )}
+      </Box>
+
+      <Box
+        sx={
+          isGrid
+            ? { display: 'flex', flexDirection: 'column', flexGrow: 1, minWidth: 0, pt: 3 }
+            : { py: { md: 2 }, direction: 'ltr' }
+        }
       >
         <Box
           sx={{
-            position: 'absolute',
-            top: '15%',
-            left: '10%',
-            width: '35%',
-            height: '50%',
-            backgroundColor: 'rgba(35, 75, 77, 0.1)',
-            borderRadius: '50% 40% 60% 50%',
-            transform: 'rotate(-20deg)',
-          }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '10%',
-            right: '15%',
-            width: '30%',
-            height: '45%',
-            backgroundColor: 'rgba(251, 191, 73, 0.2)',
-            borderRadius: '60% 40% 50% 60%',
-            transform: 'rotate(15deg)',
-          }}
-        />
-        <Coffee
-          size={48}
-          strokeWidth={1}
-          style={{
-            color: 'rgba(35, 75, 77, 0.25)',
-            position: 'relative',
-            zIndex: 1,
-          }}
-        />
-      </Box>
-
-      <Box sx={{ p: { xs: 3, md: 4 }, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-        <Typography
-          component="p"
-          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            mb: 2,
             color: 'primary.main',
-            fontSize: '0.7rem',
-            fontWeight: 500,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            mb: 1,
-            opacity: 0.7,
           }}
         >
-          {product.type}
-        </Typography>
+          <Typography component="span" sx={{ fontSize: '0.65rem', letterSpacing: '0.18em', opacity: 0.55 }}>
+            {String(index + 1).padStart(2, '0')}
+          </Typography>
+          <Box sx={{ width: 28, height: 1, backgroundColor: 'accent.dark' }} />
+          <Typography
+            component="p"
+            sx={{ fontSize: '0.65rem', letterSpacing: '0.13em', textTransform: 'uppercase', opacity: 0.72 }}
+          >
+            {product.type}
+          </Typography>
+        </Box>
 
         <Typography
           component="h3"
           sx={{
-            fontFamily: 'Georgia, "Times New Roman", serif',
-            fontSize: { xs: '1.375rem', md: '1.5rem' },
-            fontWeight: 400,
+            fontFamily: (theme) => theme.typography.h2.fontFamily,
+            fontSize: isGrid ? { xs: '2rem', md: '2.25rem' } : { xs: '2.35rem', md: '3.4rem' },
+            letterSpacing: '-0.05em',
+            lineHeight: 1.04,
             color: 'primary.main',
-            mb: 1.5,
-            lineHeight: 1.25,
+            mb: 2,
           }}
         >
           {product.name}
@@ -103,30 +131,16 @@ export function ProductCard({ product, whatsappHref }: ProductCardProps) {
           <Typography
             component="p"
             sx={{
-              color: 'primary.main',
-              fontSize: '0.8125rem',
-              fontWeight: 400,
-              letterSpacing: '0.04em',
-              mb: 2,
-              opacity: 0.75,
+              fontSize: '0.72rem',
+              fontWeight: 500,
+              letterSpacing: '0.1em',
+              lineHeight: 1.6,
+              textTransform: 'uppercase',
+              color: 'primary.light',
+              mb: 2.5,
             }}
           >
             {product.profile}
-          </Typography>
-        )}
-
-        {product.description && (
-          <Typography
-            component="p"
-            sx={{
-              color: 'primary.main',
-              fontSize: '0.875rem',
-              lineHeight: 1.7,
-              mb: 2,
-              opacity: 0.85,
-            }}
-          >
-            {product.description}
           </Typography>
         )}
 
@@ -134,12 +148,13 @@ export function ProductCard({ product, whatsappHref }: ProductCardProps) {
           <Typography
             component="p"
             sx={{
-              color: 'primary.main',
-              fontSize: '0.8125rem',
-              lineHeight: 1.7,
-              mb: 2,
+              fontFamily: (theme) => theme.typography.h5.fontFamily,
+              fontSize: '1.12rem',
+              lineHeight: 1.65,
               fontStyle: 'italic',
-              opacity: 0.8,
+              color: 'primary.main',
+              mt: 2,
+              maxWidth: '48ch',
             }}
           >
             {product.caracter}
@@ -147,52 +162,31 @@ export function ProductCard({ product, whatsappHref }: ProductCardProps) {
         )}
 
         {product.ingredients && product.ingredients.length > 0 && (
-          <Box sx={{ mb: 3 }}>
-            <Typography
-              component="p"
-              sx={{
-                color: 'primary.main',
-                fontSize: '0.75rem',
-                fontWeight: 500,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                mb: 0.75,
-                opacity: 0.6,
-              }}
-            >
+          <Box sx={{ mt: 3, pt: 2, borderTop: '1px solid', borderColor: 'divider', maxWidth: '48ch' }}>
+            <Typography component="span" sx={{ fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.58 }}>
               Ingredientes
             </Typography>
-            <Typography
-              component="p"
-              sx={{
-                color: 'primary.main',
-                fontSize: '0.8125rem',
-                lineHeight: 1.6,
-                opacity: 0.75,
-              }}
-            >
+            <Typography component="p" sx={{ fontSize: '0.78rem', lineHeight: 1.7, mt: 0.75, opacity: 0.78 }}>
               {product.ingredients.join(' · ')}
             </Typography>
           </Box>
         )}
 
-        <Box sx={{ mt: 'auto', pt: 2 }}>
-          {showWhatsApp ? (
-            <WhatsAppCta href={whatsappHref!} label="Consultar por WhatsApp" />
-          ) : (
-            <Typography
-              component="p"
-              sx={{
-                color: 'primary.main',
-                fontSize: '0.8125rem',
-                fontStyle: 'italic',
-                opacity: 0.5,
-              }}
-            >
-              Próximamente disponible
-            </Typography>
-          )}
-        </Box>
+        {product.price !== undefined && (
+          <Typography component="p" sx={{ fontSize: '1rem', mt: 2 }}>
+            {product.currency
+              ? new Intl.NumberFormat('es-GT', { style: 'currency', currency: product.currency }).format(product.price)
+              : product.price}
+          </Typography>
+        )}
+
+        {product.available !== undefined && (
+          <Typography component="p" sx={{ fontSize: '0.78rem', mt: 1, opacity: 0.7 }}>
+            {product.available ? 'Disponible' : 'No disponible'}
+          </Typography>
+        )}
+
+        {showWhatsApp && <Box sx={{ mt: isGrid ? 'auto' : 3, pt: isGrid ? 3 : 0 }}><WhatsAppCta href={whatsappHref} /></Box>}
       </Box>
     </Box>
   )

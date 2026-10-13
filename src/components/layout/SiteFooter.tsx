@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 
 const INSTAGRAM_URL = 'https://instagram.com/tikimayastore'
 const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61594489862752'
@@ -50,29 +51,29 @@ export function SiteFooter() {
       sx={{
         backgroundColor: 'primary.main',
         color: 'secondary.main',
-        py: { xs: 6, md: 8 },
+        py: { xs: 4, md: 5 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'row' },
             justifyContent: 'space-between',
             alignItems: { xs: 'flex-start', md: 'center' },
-            gap: { xs: 4, md: 4 },
-            mb: { xs: 4, md: 5 },
+            gap: { xs: 2.5, md: 4 },
+            mb: { xs: 2.5, md: 3.5 },
           }}
         >
           <Box>
             <Typography
               component="p"
               sx={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
-                fontSize: { xs: '1.375rem', md: '1.5rem' },
+                fontFamily: (theme) => theme.typography.h4.fontFamily,
+                fontSize: { xs: '1.45rem', md: '1.7rem' },
                 fontWeight: 400,
                 color: 'secondary.main',
-                mb: 1,
+                mb: 0.5,
                 letterSpacing: '0.02em',
               }}
             >
@@ -81,9 +82,8 @@ export function SiteFooter() {
             <Typography
               component="p"
               sx={{
-                fontSize: '0.875rem',
+                fontSize: '0.9375rem',
                 color: 'secondary.main',
-                opacity: 0.7,
                 fontStyle: 'italic',
               }}
             >
@@ -95,17 +95,25 @@ export function SiteFooter() {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: 2,
+              gap: 1.5,
               color: 'secondary.main',
-              opacity: 0.85,
               '& a': {
                 color: 'inherit',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: 'opacity 0.2s ease',
+                minWidth: 48,
+                minHeight: 48,
+                borderRadius: 1,
+                transition: 'color 0.2s ease, transform 0.2s ease',
                 '&:hover': {
-                  opacity: 1,
+                  color: 'accent.main',
+                  transform: 'translateY(-2px)',
+                },
+                '&:focus-visible': {
+                  outline: '2px solid',
+                  outlineColor: 'accent.main',
+                  outlineOffset: 3,
                 },
               },
             }}
@@ -132,21 +140,41 @@ export function SiteFooter() {
         <Box
           sx={{
             borderTop: '1px solid',
-            borderColor: 'rgba(232, 226, 210, 0.2)',
-            pt: 3,
+            borderColor: (theme) => alpha(theme.palette.secondary.main, 0.3),
+            pt: 2.5,
           }}
         >
           <Typography
             component="p"
             sx={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.04em',
+              fontSize: '0.875rem',
+              lineHeight: 1.7,
               color: 'secondary.main',
-              opacity: 0.55,
+              fontWeight: 400,
               textAlign: { xs: 'left', md: 'center' },
             }}
           >
             © 2026 TikiMaya Store. Todos los derechos reservados.
+            <Box component="span" aria-hidden="true" sx={{ px: 0.75, color: (theme) => alpha(theme.palette.secondary.main, 0.65) }}>
+              ·
+            </Box>
+            Landing desarrollada por{' '}
+            <Box
+              component="a"
+              href="https://bytecodelatam.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+              sx={{
+                color: 'accent.main',
+                fontWeight: 500,
+                textDecoration: 'underline',
+                textUnderlineOffset: '0.2em',
+                '&:hover': { color: 'secondary.main', textDecorationThickness: '2px' },
+                '&:focus-visible': { outline: '2px solid', outlineColor: 'accent.main', outlineOffset: 3, borderRadius: 1 },
+              }}
+            >
+              byteCode
+            </Box>
           </Typography>
         </Box>
       </Container>

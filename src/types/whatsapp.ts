@@ -1,6 +1,6 @@
 export interface WhatsAppChannelConfig {
   phoneNumber?: string
-  defaultMessage?: string
+  defaultMessage: string
 }
 
 export interface WhatsAppLinkOptions {

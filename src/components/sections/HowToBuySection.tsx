@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from '@mui/material'
+import { alpha } from '@mui/material/styles'
 import { MessageCircle, MousePointerClick, Package } from 'lucide-react'
 import { createWhatsAppLink } from '../../utils/whatsapp'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
@@ -32,145 +33,73 @@ export function HowToBuySection() {
   })
 
   return (
-    <Box
-      component="section"
-      id="how-to-buy"
-      sx={{
-        py: { xs: 8, md: 12 },
-        backgroundColor: 'background.default',
-      }}
-    >
-      <Container maxWidth="lg">
-        <Box sx={{ mb: { xs: 6, md: 8 }, maxWidth: '55ch' }}>
-          <Typography
-            component="h2"
-            sx={{
-              fontFamily: 'Georgia, "Times New Roman", serif',
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              fontWeight: 400,
-              color: 'primary.main',
-              mb: 2,
-            }}
-          >
-            Así de sencillo
-          </Typography>
-        </Box>
-
-        <Box
-          sx={{
-            position: 'relative',
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
-            gap: { xs: 5, md: 4 },
-            mb: { xs: 6, md: 8 },
-          }}
-        >
-          <Box
-            aria-hidden
-            sx={{
-              display: { xs: 'none', md: 'block' },
-              position: 'absolute',
-              top: '32px',
-              left: '16.66%',
-              right: '16.66%',
-              height: '1px',
-              backgroundColor: 'primary.main',
-              opacity: 0.2,
-            }}
-          />
-
-          {howToBuySteps.map(({ number, title, description, Icon }) => (
-            <Box
-              key={number}
+    <Box component="section" id="how-to-buy" sx={{ py: { xs: 9, md: 15 }, backgroundColor: 'secondary.light' }}>
+      <Container maxWidth="xl">
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '0.7fr 1.3fr' }, gap: { xs: 5, md: 12 }, alignItems: 'start' }}>
+          <Box sx={{ position: { md: 'sticky' }, top: { md: 130 } }}>
+            <Typography component="p" sx={{ color: 'primary.main', fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.62, mb: 2 }}>
+              Tu pedido, paso a paso
+            </Typography>
+            <Typography
+              component="h2"
               sx={{
-                position: 'relative',
-                display: 'flex',
-                flexDirection: { xs: 'row', md: 'column' },
-                alignItems: 'flex-start',
-                gap: { xs: 3, md: 2 },
+                fontFamily: (theme) => theme.typography.h2.fontFamily,
+                fontSize: { xs: '3rem', md: '4.5rem' },
+                fontWeight: 400,
+                letterSpacing: '-0.055em',
+                lineHeight: 0.98,
+                color: 'primary.main',
+                maxWidth: '8ch',
+                mb: 4,
               }}
             >
+              Así de sencillo
+              <Box component="span" sx={{ color: 'accent.dark' }}>.</Box>
+            </Typography>
+            <WhatsAppCta
+              href={whatsappHref}
+              sx={{
+                backgroundColor: 'primary.main',
+                color: 'secondary.main',
+                '&:hover': { backgroundColor: 'primary.dark' },
+              }}
+            />
+          </Box>
+
+          <Box>
+            {howToBuySteps.map(({ number, title, description, Icon }) => (
               <Box
+                component="article"
+                key={number}
                 sx={{
-                  position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: { xs: 48, md: 'auto' },
-                  height: { xs: 48, md: 64 },
-                  flexShrink: 0,
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '52px 1fr', sm: '72px 1fr 36px' },
+                  gap: { xs: 2, sm: 3 },
+                  alignItems: 'start',
+                  py: { xs: 3, md: 4 },
+                  borderTop: '1px solid',
+                  borderColor: 'divider',
+                  '&:last-child': { borderBottom: '1px solid', borderColor: 'divider' },
                 }}
               >
-                <Typography
-                  component="span"
-                  sx={{
-                    fontFamily: 'Georgia, "Times New Roman", serif',
-                    fontSize: { xs: '2.5rem', md: '3.5rem' },
-                    fontWeight: 400,
-                    color: 'primary.main',
-                    lineHeight: 1,
-                    opacity: 0.35,
-                  }}
-                >
+                <Typography component="span" sx={{ fontFamily: (theme) => theme.typography.h3.fontFamily, fontSize: { xs: '1.8rem', md: '2.3rem' }, lineHeight: 1, color: 'primary.light' }}>
                   {number}
                 </Typography>
-                <Box
-                  sx={{
-                    display: { xs: 'none', md: 'flex' },
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 32,
-                    height: 32,
-                    backgroundColor: 'background.default',
-                  }}
-                >
-                  <Icon size={20} strokeWidth={1.25} style={{ color: 'currentColor' }} />
+                <Box>
+                  <Typography component="h3" sx={{ fontSize: '0.72rem', letterSpacing: '0.16em', fontWeight: 500, mb: 1.2 }}>
+                    {title}
+                  </Typography>
+                  <Typography component="p" sx={{ fontSize: { xs: '0.9rem', md: '0.97rem' }, lineHeight: 1.8, maxWidth: '54ch', opacity: 0.8 }}>
+                    {description}
+                  </Typography>
+                </Box>
+                <Box sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'center', color: (theme) => alpha(theme.palette.primary.main, 0.7), pt: 0.25 }}>
+                  <Icon size={20} strokeWidth={1.2} />
                 </Box>
               </Box>
-
-              <Box>
-                <Typography
-                  component="h3"
-                  sx={{
-                    fontFamily: 'Georgia, "Times New Roman", serif',
-                    fontSize: { xs: '1.25rem', md: '1.375rem' },
-                    fontWeight: 400,
-                    color: 'primary.main',
-                    letterSpacing: '0.05em',
-                    mb: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1.5,
-                  }}
-                >
-                  <Box sx={{ display: { xs: 'inline-flex', md: 'none' } }}>
-                    <Icon size={18} strokeWidth={1.25} style={{ color: 'currentColor' }} />
-                  </Box>
-                  {title}
-                </Typography>
-
-                <Typography
-                  component="p"
-                  sx={{
-                    fontSize: '0.875rem',
-                    lineHeight: 1.7,
-                    color: 'primary.main',
-                    opacity: 0.8,
-                    maxWidth: { xs: 'none', md: '30ch' },
-                  }}
-                >
-                  {description}
-                </Typography>
-              </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </Box>
-
-        <WhatsAppCta href={whatsappHref} label="Consultar por WhatsApp" />
       </Container>
     </Box>
   )

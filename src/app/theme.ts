@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles'
+import { alpha, createTheme } from '@mui/material/styles'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -14,9 +14,15 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#234B4D',
+      light: '#456A67',
+      dark: '#173638',
+      contrastText: '#E8E2D2',
     },
     secondary: {
       main: '#E8E2D2',
+      light: '#F2EEE4',
+      dark: '#D8D0BD',
+      contrastText: '#234B4D',
     },
     background: {
       default: '#E8E2D2',
@@ -24,35 +30,41 @@ export const theme = createTheme({
     },
     accent: {
       main: '#FBBF49',
+      dark: '#E5A92E',
+      contrastText: '#234B4D',
     },
+    divider: alpha('#234B4D', 0.16),
   },
   shape: {
-    borderRadius: 8,
+    borderRadius: 4,
   },
   typography: {
-    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontFamily: '"Avenir Next", Avenir, "Segoe UI", sans-serif',
     h1: {
-      fontFamily: 'Georgia, "Times New Roman", serif',
+      fontFamily: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif',
       fontWeight: 400,
+      letterSpacing: '-0.055em',
     },
     h2: {
-      fontFamily: 'Georgia, "Times New Roman", serif',
+      fontFamily: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif',
       fontWeight: 400,
+      letterSpacing: '-0.045em',
     },
     h3: {
-      fontFamily: 'Georgia, "Times New Roman", serif',
+      fontFamily: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif',
       fontWeight: 400,
+      letterSpacing: '-0.035em',
     },
     h4: {
-      fontFamily: 'Georgia, "Times New Roman", serif',
+      fontFamily: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif',
       fontWeight: 400,
     },
     h5: {
-      fontFamily: 'Georgia, "Times New Roman", serif',
+      fontFamily: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif',
       fontWeight: 400,
     },
     h6: {
-      fontFamily: 'Georgia, "Times New Roman", serif',
+      fontFamily: '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif',
       fontWeight: 400,
     },
   },
@@ -62,9 +74,6 @@ export const theme = createTheme({
         html: {
           scrollBehavior: 'smooth',
         },
-        body: {
-          backgroundColor: '#E8E2D2',
-        },
       },
     },
     MuiButton: {
@@ -72,6 +81,14 @@ export const theme = createTheme({
         root: {
           textTransform: 'none',
           fontWeight: 400,
+          minHeight: 48,
+          borderRadius: 999,
+          paddingInline: 24,
+          letterSpacing: '0.01em',
+          transition: 'background-color 180ms ease, color 180ms ease, transform 180ms ease',
+          '&:hover': {
+            transform: 'translateY(-1px)',
+          },
         },
       },
     },
