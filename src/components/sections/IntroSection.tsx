@@ -86,7 +86,7 @@ export function IntroSection() {
 
             <Button
               component="a"
-              href="#products"
+              href="#kits"
               variant="text"
               color="primary"
               endIcon={<ArrowDownRight size={18} />}

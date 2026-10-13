@@ -60,7 +60,7 @@ export function SocialSection() {
 
             <Box>
               <Typography component="p" sx={{ fontSize: { xs: '0.95rem', md: '1.02rem' }, lineHeight: 1.85, color: 'primary.main', opacity: 0.8, maxWidth: '48ch' }}>
-                Nuevas mezclas, preparaciones, kits y novedades de TikiMaya Store. Acompáñanos mientras seguimos descubriendo qué viene después.
+              Descubre accesorios para disfrutar tus infusiones, nuevas ideas para prepararlas y las novedades que llegan a TikiMaya Store. Síguenos en redes para descubrir lo que viene.
               </Typography>
             </Box>
           </Box>
@@ -131,7 +131,7 @@ export function SocialSection() {
               startIcon={<InstagramIcon size={18} />}
               endIcon={<ArrowUpRight size={15} />}
             >
-              Seguir en Instagram
+              Descubrir en Instagram
             </Button>
             <Button
               component="a"
@@ -144,7 +144,7 @@ export function SocialSection() {
               endIcon={<ArrowUpRight size={15} />}
               sx={{ borderBottom: '1px solid', borderColor: (theme) => alpha(theme.palette.primary.main, 0.4), borderRadius: 0, px: 1.5 }}
             >
-              Ver en Facebook
+              Seguir en Facebook
             </Button>
           </Box>
         </Box>

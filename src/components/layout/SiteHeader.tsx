@@ -22,7 +22,7 @@ const navItems = [
   { label: 'Kits', href: '#kits' },
   { label: 'Productos', href: '#products' },
   { label: 'Cómo comprar', href: '#how-to-buy' },
-  { label: 'Contacto', href: '#social' },
+  { label: 'Descubrir', href: '#social' },
 ]
 
 export function SiteHeader() {
@@ -64,7 +64,7 @@ export function SiteHeader() {
       component="header"
       position="sticky"
       sx={(theme) => ({
-        backgroundColor: alpha(theme.palette.background.default, 0.75),
+        backgroundColor: alpha(theme.palette.secondary.light, 0.75),
         color: 'primary.main',
         boxShadow: 'none',
         borderBottom: '1px solid',
