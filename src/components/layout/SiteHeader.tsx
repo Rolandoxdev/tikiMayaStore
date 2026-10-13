@@ -10,7 +10,6 @@ import {
   ListItemButton,
   ListItemText,
   Toolbar,
-  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -37,9 +36,13 @@ export function SiteHeader() {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        TikiMaya Store
-      </Typography>
+      <Box
+        component="img"
+        src={logoTikiMayaStore}
+        alt="TikiMaya Store logo"
+        sx={{ height: 36, width: 'auto', display: 'block', mx: 'auto', my: 2 }}
+      />
+      
       <List>
         {navItems.map((item) => (
           <ListItem disablePadding key={item.label}>
@@ -116,22 +119,6 @@ export function SiteHeader() {
                     fontWeight: 400,
                     letterSpacing: '0.08em',
                     textTransform: 'none',
-                    '&:hover': {
-                      backgroundColor: 'transparent',
-                      '&::after': { transform: 'scaleX(1)' },
-                    },
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      bottom: 8,
-                      left: 16,
-                      right: 16,
-                      height: 1,
-                      backgroundColor: 'currentColor',
-                      transform: 'scaleX(0)',
-                      transformOrigin: 'left',
-                      transition: 'transform 180ms ease',
-                    },
                   }}
                 >
                   {item.label}
