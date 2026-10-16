@@ -10,6 +10,7 @@ export interface Kit {
   name: string
   type?: string
   description?: string
+  contents?: string[]
   productIds?: string[]
   accessories?: KitAccessory[]
   price?: number

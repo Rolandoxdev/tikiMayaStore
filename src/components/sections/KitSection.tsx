@@ -34,7 +34,7 @@ export function KitSection() {
               Para compartir
             </Typography>
             <Typography component="h2" sx={{ fontFamily: (theme) => theme.typography.h2.fontFamily, fontSize: { xs: '2.7rem', md: '4rem' }, lineHeight: 1.02, letterSpacing: '-0.05em', color: 'primary.main' }}>
-              Descubre nuestros kits
+              Conoce nuestros kits
             </Typography>
           </Box>
           <Typography
