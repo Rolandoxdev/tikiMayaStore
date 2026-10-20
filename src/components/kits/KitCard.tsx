@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Gift } from 'lucide-react'
 import { useRef, useState, type TouchEvent } from 'react'
 import type { Kit } from '../../types/kit.ts'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
@@ -140,6 +140,30 @@ export function KitCard({ kit, index, whatsappHref, variant = 'tile' }: KitCardP
                 objectPosition: 'center center',
               }}
             />
+          )}
+
+          {currentImage && (
+            <Box
+              component="span"
+              role="img"
+              aria-label={`Idea de regalo: ${kit.name}`}
+              sx={{
+                position: 'absolute',
+                top: { xs: 1.5, sm: 2 },
+                left: { xs: 1.5, sm: 2 },
+                zIndex: 1,
+                display: 'grid',
+                width: 40,
+                height: 40,
+                placeItems: 'center',
+                borderRadius: '50%',
+                backgroundColor: 'primary.main',
+                color: 'accent.main',
+                pointerEvents: 'none',
+              }}
+            >
+              <Gift size={19} strokeWidth={1.7} aria-hidden="true" />
+            </Box>
           )}
 
           {galleryImages.length > 0 && (
