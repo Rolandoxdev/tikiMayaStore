@@ -4,23 +4,21 @@ import { ChevronLeft, ChevronRight, Gift } from 'lucide-react'
 import { useRef, useState, type TouchEvent } from 'react'
 import type { Kit } from '../../types/kit.ts'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
-import kitSaboresOpen from '../../assets/images/Kit-1-abierto.jpg'
-import kitRitualOpen from '../../assets/images/kitRitualDelAltiplano.jpg'
+import kitSaboresOpen from '../../assets/images/tikimaya-infusiones-kit-sabores-por-descubrir.webp'
+import kitRitualOpen from '../../assets/images/tikimaya-infusiones-kit-ritual-del-altiplano.webp'
 import infusorEsfera from '../../assets/images/infusor_esfera.jpg'
 import spoonLeaf from '../../assets/images/cuchara_hojas.jpg'
 import spoonHoney from '../../assets/images/paletaMiel.jpg'
 import teaGlass from '../../assets/images/teteraVidrio.jpg'
 import infusorHearth from '../../assets/images/infusorCorazon.jpg'
-import cacaoEspeciado from '../../assets/images/infusionCacaoEspeciadoJar.jpg'
-import kitCeremoniaMan from '../../assets/images/kitCeremoniaDelBosqueHombre.jpg'
-import kitCeremoniaWoman from '../../assets/images/kitCeremoniaDelBosqueMujer.jpg'
+import kitCeremoniaMan from '../../assets/images/tikimaya-infusiones-kit-ceremonia-del-bosque.webp'
 import botellaVidrioInfusor from '../../assets/images/botella-vidrio-infusor.avif'
-import teaInfusions from '../../assets/images/infusiones.jpg'
+import teaInfusions from '../../assets/images/tikimaya-infusiones-te-tecpan.webp'
 
 const kitPhotos: Record<string, string[]> = {
-  'sabores-por-descubrir': [kitSaboresOpen, infusorEsfera, spoonLeaf, spoonHoney, cacaoEspeciado],
+  'sabores-por-descubrir': [kitSaboresOpen, infusorEsfera, spoonLeaf, spoonHoney, teaInfusions],
   'ritual-del-altiplano': [kitRitualOpen, teaGlass, infusorHearth, spoonHoney, teaInfusions],
-  'ceremonia-del-bosque': [kitCeremoniaMan, botellaVidrioInfusor, kitCeremoniaWoman, infusorHearth, spoonHoney, teaInfusions],
+  'ceremonia-del-bosque': [kitCeremoniaMan, botellaVidrioInfusor, infusorHearth, spoonHoney, teaInfusions],
 }
 
 interface KitCardProps {

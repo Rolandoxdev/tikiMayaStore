@@ -2,9 +2,9 @@ import { Box, Typography } from '@mui/material'
 import { alpha } from '@mui/material/styles'
 import type { Product } from '../../types/product.ts'
 import { WhatsAppCta } from '../../features/whatsapp/WhatsAppCta'
-import atardecerImage from '../../assets/images/infusionAtardecerCarmesi.png'
-import brumaImage from '../../assets/images/infusionBrumaDelAltiplano.png'
-import cacaoImage from '../../assets/images/infusionCacaoEspeciado.png'
+import atardecerImage from '../../assets/images/tikimaya_infusion_atardecer_ carmesi.webp'
+import brumaImage from '../../assets/images/tikimaya_infusion-herbal_bruma-del-altiplano.webp'
+import cacaoImage from '../../assets/images/tikimaya_infusion_cacao-especiado.webp'
 
 const productPhotos: Record<string, { src: string; objectPosition: string }> = {
   'atardecer-carmesi': { src: atardecerImage, objectPosition: 'center 20%' },
@@ -79,7 +79,7 @@ export function ProductCard({ product, index, whatsappHref, variant = 'editorial
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: photo?.objectPosition ?? 'center center',
+              //objectPosition: photo?.objectPosition ?? 'center center',
             }}
           />
         )}
